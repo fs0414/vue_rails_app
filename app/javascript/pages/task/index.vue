@@ -8,7 +8,8 @@
           :key="task.id"
           :id="'task-' + task.id"
           class="bg-white border shadow-sm rounded my-2 p-4"
-          @click="handleShowTaskDetailModal(task)">
+          @click="handleShowTaskDetailModal(task)"
+        >
           <span>{{ task.title }}</span>
         </div>
       </div>
@@ -54,5 +55,10 @@ export default {
 </script>
 
 <style scoped>
-
+  .fade-enter-active, .fade-leave-active {
+  transition: opacity .5s;
+}
+.fade-enter, .fade-leave-to {
+  opacity: 0;
+}
 </style>
