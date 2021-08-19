@@ -39,6 +39,10 @@ export default {
     }
   },
   created() {
+    this.fetchTasks();
+  },
+  methods: {
+    fetchTasks() {
       this.$axios.get("tasks")
         .then(res => this.tasks = res.data)
         .catch(err => console.log(err.status));
@@ -52,6 +56,7 @@ export default {
       this.taskDetail = {};
     }
   }
+}
 </script>
 
 <style scoped>
