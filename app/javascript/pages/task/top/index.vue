@@ -11,3 +11,7 @@ export default {
   name: "TopIndex",
 }
 </script>
+
+<style scoped>
+
+</style>
