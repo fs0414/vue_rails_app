@@ -38,11 +38,9 @@ export default {
       isVisibleTaskDetailModal: false
     }
   },
-
   created() {
     this.fetchTasks();
   },
-
   methods: {
     fetchTasks() {
       this.$axios.get("tasks")
