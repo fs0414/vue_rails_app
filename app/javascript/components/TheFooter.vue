@@ -1,15 +1,13 @@
 <template>
   <footer class="text-center">
-      <small>Copyright &copy; 2020. RUNTEQ</small>
-    </footer>
+    <small>footer</small>
+  </footer>
 </template>
 
 <script>
 export default {
-  name: 'TheFooter'
-}
+  name: "TheFooter",
+};
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>
