@@ -6,7 +6,9 @@
         <div
           v-for="task in tasks"
           :key="task.id"
+          :id="'task-' + task.id"
           class="bg-white border shadow-sm rounded my-2 p-4"
+          @click="handleShowTaskDetailModal(task)"
         >
           <span>{{ task.title }}</span>
         </div>
@@ -17,15 +19,28 @@
         >戻る</router-link
       >
     </div>
+    <transition name="fade">
+      <TaskDetailModal
+        v-if="isVisibleTaskDetailModal"
+        :task="taskDetail"
+        @close-modal="handleCloseTaskDetailModal"
+      />
+    </transition>
   </div>
 </template>
 
 <script>
+import TaskDetailModal from "./components/TaskDetailModal";
 export default {
   name: "TaskIndex",
+  components: {
+    TaskDetailModal,
+  },
   data() {
     return {
       tasks: [],
+      taskDetail: {},
+      isVisibleTaskDetailModal: false,
     };
   },
 
@@ -40,8 +55,27 @@ export default {
         .then((res) => (this.tasks = res.data))
         .catch((err) => console.log(err.status));
     },
+
+    handleShowTaskDetailModal(task) {
+      this.isVisibleTaskDetailModal = true;
+      this.taskDetail = task;
+    },
+
+    handleCloseTaskDetailModal() {
+      this.isVisibleTaskDetailModal = false;
+      this.taskDetail = {};
+    },
   },
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s;
+}
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
+}
+</style>
