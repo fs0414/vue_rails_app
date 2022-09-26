@@ -50,8 +50,6 @@ document.addEventListener("DOMContentLoaded", () => {
 //   })
 // })
 //
-//
-//
 // If the project is using turbolinks, install 'vue-turbolinks':
 //
 // yarn add vue-turbolinks
