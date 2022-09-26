@@ -77,6 +77,10 @@ export default {
       this.isVisibleTaskDetailModal = false;
       this.taskDetail = {};
     },
+<<<<<<< HEAD
+=======
+
+>>>>>>> aa36bd17ca9885958ad7894bbdac4087ab29e30a
     handleShowTaskCreateModal() {
       this.isVisibleTaskCreateModal = true;
     },
