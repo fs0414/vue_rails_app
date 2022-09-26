@@ -77,24 +77,12 @@ export default {
       this.isVisibleTaskDetailModal = false;
       this.taskDetail = {};
     },
-<<<<<<< HEAD
-
-    handleShowTaskCreateModal() {
-      this.isVisibleTaskCreateModal = true;
-    },
-
-    handleCloseTaskCreateModal() {
-      this.isVisibleTaskCreateModal = false;
-    },
-
-=======
     handleShowTaskCreateModal() {
       this.isVisibleTaskCreateModal = true;
     },
     handleCloseTaskCreateModal() {
       this.isVisibleTaskCreateModal = false;
     },
->>>>>>> 379832aafbcb12daf83b72fa7e6210c7a84cd43f
     async handleCreateTask(task) {
       try {
         await this.createTask(task);
