@@ -12,6 +12,9 @@
         >
           <span>{{ task.title }}</span>
         </div>
+        <button class="btn btn-secondary" @click="handleShowTaskCreateModal">
+          タスクを追加
+        </button>
       </div>
     </div>
     <div class="text-center">
@@ -26,22 +29,36 @@
         @close-modal="handleCloseTaskDetailModal"
       />
     </transition>
+    <transition name="fade">
+      <TaskCreateModal
+        v-if="isVisibleTaskCreateModal"
+        @close-modal="handleCloseTaskCreateModal"
+        @create-task="handleCreateTask"
+      />
+    </transition>
   </div>
 </template>
 
 <script>
+import { mapGetters, mapActions } from "vuex";
 import TaskDetailModal from "./components/TaskDetailModal";
+import TaskCreateModal from "./components/TaskCreateModal";
 export default {
   name: "TaskIndex",
   components: {
     TaskDetailModal,
+    TaskCreateModal,
   },
   data() {
     return {
-      tasks: [],
       taskDetail: {},
       isVisibleTaskDetailModal: false,
+      isVisibleTaskCreateModal: false,
     };
+  },
+
+  computed: {
+    ...mapGetters(["tasks"]),
   },
 
   created() {
@@ -49,12 +66,7 @@ export default {
   },
 
   methods: {
-    fetchTasks() {
-      this.$axios
-        .get("tasks")
-        .then((res) => (this.tasks = res.data))
-        .catch((err) => console.log(err.status));
-    },
+    ...mapActions(["fetchTasks", "createTask"]),
 
     handleShowTaskDetailModal(task) {
       this.isVisibleTaskDetailModal = true;
@@ -64,6 +76,20 @@ export default {
     handleCloseTaskDetailModal() {
       this.isVisibleTaskDetailModal = false;
       this.taskDetail = {};
+    },
+    handleShowTaskCreateModal() {
+      this.isVisibleTaskCreateModal = true;
+    },
+    handleCloseTaskCreateModal() {
+      this.isVisibleTaskCreateModal = false;
+    },
+    async handleCreateTask(task) {
+      try {
+        await this.createTask(task);
+        this.handleCloseTaskCreateModal();
+      } catch (error) {
+        console.log(error);
+      }
     },
   },
 };
