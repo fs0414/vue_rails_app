@@ -13,7 +13,7 @@
           <span>{{ task.title }}</span>
         </div>
         <button class="btn btn-secondary" @click="handleShowTaskCreateModal">
-          タスク追加
+          タスクを追加
         </button>
       </div>
     </div>
